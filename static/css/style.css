@@ -45,8 +45,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Use the uploaded image as the background */
-    background: url('assets/images/bg_image.jpg') no-repeat center center/cover;
+    /* CORRECTED PATH: Navigate up from 'css' to 'static', then down to 'images' */
+    background: url('../images/bg_image.png') no-repeat center center/cover;
     z-index: -2; /* Puts the image behind all content */
 }
 

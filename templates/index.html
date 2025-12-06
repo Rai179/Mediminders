@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDIMINDERS</title>
-    <link rel="stylesheet" href=" style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
     <section id="hero" class="hero-section">
-        
+
         <nav class="navbar">
             <div class="logo">
-                <img src="assets/images/logo.png" alt="Mediminders Logo" class="logo-img">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mediminders Logo" class="logo-img">
                 MEDIMINDERS
             </div>
             <div class="nav-links">
                 <a href="#about">About Us</a>
                 <a href="#products">Products</a>
-                <a href="review.html">Reviews</a>
-                <a href="contact_us.html">Contact Us</a>
-                <a href="#" class="btn sign-up">Sign Up</a>
-                <a href="#" class="btn sign-in">Sign In</a>
+                <a href="{{ url_for('review') }}">Reviews</a>
+                <a href="{{ url_for('contact_us') }}">Contact Us</a>
+                <a href="{{ url_for('signup') }}" class="btn sign-up">Sign Up</a>
+                <a href="{{ url_for('signin') }}" class="btn sign-in">Sign In</a>
             </div>
         </nav>
 
@@ -43,7 +45,10 @@
                     Born out of<br>obsession
                 </h2>
                 <p class="about-text">
-                    Mediminders was created for people who want to take control of their health without the stress of missed doses or complicated routines. Built by innovators who believe in simple, smart healthcare, our AI-powered medicine dispensers make daily medication effortless and reliable. We're driven by one goal: to make staying healthy easier, smarter, and more consistent for everyone.
+                    Mediminders was created for people who want to take control of their health without the stress of
+                    missed doses or complicated routines. Built by innovators who believe in simple, smart healthcare,
+                    our AI-powered medicine dispensers make daily medication effortless and reliable. We're driven by
+                    one goal: to make staying healthy easier, smarter, and more consistent for everyone.
                 </p>
                 <a href="#" class="btn learn-more">Learn More</a>
             </div>
@@ -55,20 +60,21 @@
             <div class="product-gallery">
                 <div class="product-item">
                     <div class="product-image-wrapper">
-                        <img src="assets/images/prod1.png" alt="12-Compartment Box" class="product-img">
+                        <img src="{{ url_for('static', filename='images/prod1.png') }}" alt="12-Compartment Box" class="product-img">
                     </div>
                     <p class="product-name">12-Compartment Box</p>
                 </div>
                 <div class="product-item">
                     <div class="product-image-wrapper">
-                        <img src="assets/images/prod2.png" alt="8-Compartment Box" class="product-img">
+                        <img src="{{ url_for('static', filename='images/prod2.png') }}" alt="8-Compartment Box" class="product-img">
                     </div>
                     <p class="product-name">8-Compartment Box</p>
                 </div>
             </div>
             <div class="products-footer">
                 <p class="products-description">
-                    Our smart products empower you to manage your medication effortlessly and stay on track with your health goals.
+                    Our smart products empower you to manage your medication effortlessly and stay on track with your
+                    health goals.
                 </p>
                 <a href="#" class="btn shop-now-products">SHOP NOW</a>
             </div>
@@ -81,39 +87,39 @@
                 <div class="features-left">
                     <div class="feature-item">
                         <div class="feature-pill">Fingerprint Sensor Security</div>
-                        <img src="assets/images/fingerprint_icon.png" alt="Fingerprint Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/fingerprint_icon.png') }}" alt="Fingerprint Icon" class="feature-icon">
                     </div>
                     <div class="feature-item">
                         <div class="feature-pill">Prescription Reader<br>and Analyser</div>
-                        <img src="assets/images/prescription_icon.png" alt="Prescription Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/prescription_icon.png') }}" alt="Prescription Icon" class="feature-icon">
                     </div>
                     <div class="feature-item">
                         <div class="feature-pill">Chargable LiFO<br>Battery</div>
-                        <img src="assets/images/battery_icon.png" alt="Battery Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/battery_icon.png') }}" alt="Battery Icon" class="feature-icon">
                     </div>
                     <div class="feature-item">
                         <div class="feature-pill">Sync via WIFI</div>
-                        <img src="assets/images/wifi_icon.png" alt="Wifi Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/wifi_icon.png') }}" alt="Wifi Icon" class="feature-icon">
                     </div>
                 </div>
                 <div class="product-display">
-                    <img src="assets/images/product.png" alt="Mediminders Product" class="center-product-img">
+                    <img src="{{ url_for('static', filename='images/product.png') }}" alt="Mediminders Product" class="center-product-img">
                 </div>
                 <div class="features-right">
                     <div class="feature-item">
-                        <img src="assets/images/alarm_icon.png" alt="Alarm Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/alarm_icon.png') }}" alt="Alarm Icon" class="feature-icon">
                         <div class="feature-pill">Smart Alarm System</div>
                     </div>
                     <div class="feature-item">
-                        <img src="assets/images/pills_icon.png" alt="Pills Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/pills_icon.png') }}" alt="Pills Icon" class="feature-icon">
                         <div class="feature-pill">Pills Counter</div>
                     </div>
                     <div class="feature-item">
-                        <img src="assets/images/alert_icon.png" alt="Alert Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/alert_icon.png') }}" alt="Alert Icon" class="feature-icon">
                         <div class="feature-pill">Smart Alert System</div>
                     </div>
                     <div class="feature-item">
-                        <img src="assets/images/voice_icon.png" alt="Voice Icon" class="feature-icon">
+                        <img src="{{ url_for('static', filename='images/voice_icon.png') }}" alt="Voice Icon" class="feature-icon">
                         <div class="feature-pill">Customisable Voice<br>Assistent</div>
                     </div>
                 </div>
@@ -121,52 +127,51 @@
         </div>
     </section>
     <section id="download" class="download-section">
-    
-            <path d="M0,60 Q150,20 300,60 T600,60 Q750,20 900,60 T1200,60" 
-                  fill="none" 
-                  stroke="rgba(255, 255, 255, 0.3)" 
-                  stroke-width="1"/> */
+
+        <path d="M0,60 Q150,20 300,60 T600,60 Q750,20 900,60 T1200,60" fill="none" stroke="rgba(255, 255, 255, 0.3)"
+            stroke-width="1" /> */
         </svg>
-    </div>
-         
-    <div class="download-container">
-        <div class="download-app-side">
-            <img src="assets/images/app_image.png" alt="Mediminders App Interface on Tablet" class="app-mockup-img">
         </div>
-        <div class="download-content-side">
-            <div class="motto-box">
-                <h2 class="motto-text">Meds Made Easy, Health<br>Made Better</h2>
+
+        <div class="download-container">
+            <div class="download-app-side">
+                <img src="{{ url_for('static', filename='images/app_image.png') }}" alt="Mediminders App Interface on Tablet" class="app-mockup-img">
             </div>
-            <h3 class="download-subtitle">Download Our App</h3>
-            <h1 class="download-brand-name">MEDIMINDERS</h1>
-            <a href="#" class="btn download-now">Download Now</a>
-            <p class="store-links">Available on App Store | Google Play</p>
+            <div class="download-content-side">
+                <div class="motto-box">
+                    <h2 class="motto-text">Meds Made Easy, Health<br>Made Better</h2>
+                </div>
+                <h3 class="download-subtitle">Download Our App</h3>
+                <h1 class="download-brand-name">MEDIMINDERS</h1>
+                <a href="#" class="btn download-now">Download Now</a>
+                <p class="store-links">Available on App Store | Google Play</p>
+            </div>
         </div>
-    </div>
-</section> 
+    </section>
     <footer class="site-footer">
         <div class="footer-container">
-            
+
             <div class="footer-icon">
-                <img src="assets/images/browser_icon.png" alt="Browser Icon" class="browser-icon">
+                <img src="{{ url_for('static', filename='images/browser_icon.png') }}" alt="Browser Icon" class="browser-icon">
             </div>
-            
+
             <div class="footer-links">
                 <a href="#hero">Home</a>
                 <a href="#about">About Us</a>
                 <a href="#products">Products</a>
                 <a href="#reviews">Reviews</a>
             </div>
-            
+
             <div class="footer-contact">
                 <p class="contact-title-footer">Contact Us</p>
                 <p>+033 5353 6767</p>
                 <p>8777283907</p>
                 <p>mediminder@gmail.com</p>
             </div>
-            
+
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>
