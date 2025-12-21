@@ -1,57 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up - Mediminders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Optional: Center the form in the viewport */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #dfebf7; /* Light background */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .form-container {
-            max-width: 40vw;
-            padding: 30px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d7377 0%, #14919b 50%, #2ec4b6 100%);
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        /* Animated background shapes */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        body::before {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #2ec4b6, #14919b);
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #14919b, #0d7377);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        .signup-container {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        /* Left Side - Graphics Section */
+        .graphics-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 700px;
+        }
+
+        /* Decorative elements */
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            right: 10%;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.15), rgba(102, 126, 234, 0.15));
+        }
+
+        .graphics-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-icon:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .brand-icon i {
+            font-size: 48px;
+            color: white;
+        }
+
+        .graphics-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .graphics-subtitle {
+            font-size: 1.15rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon i {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        /* Right Side - Sign Up Form */
+        .form-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #5a3a7d 0%, #764ba2 50%, #8e5ac9 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 700px;
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: white;
+        }
+
+        .terms-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .terms-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .terms-check a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .or-divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .or-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .or-divider span {
+            background: linear-gradient(135deg, #5a3a7d 0%, #764ba2 50%, #8e5ac9 100%);
+            padding: 0 15px;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .oauth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .oauth-btn {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .oauth-btn i {
+            font-size: 1.2rem;
+        }
+
+        .oauth-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .signin-link {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .signin-link a {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .signin-link a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .graphics-section,
+            .form-section {
+                padding: 60px 40px;
+                min-height: auto;
+            }
+
+            .graphics-title {
+                font-size: 2.5rem;
+            }
+
+            .form-title {
+                font-size: 1.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .signup-container {
+                border-radius: 20px;
+            }
+
+            .graphics-section {
+                padding: 50px 30px;
+                text-align: center;
+            }
+
+            .graphics-section .decoration-circle {
+                display: none;
+            }
+
+            .brand-icon {
+                margin: 0 auto 30px;
+            }
+
+            .graphics-title {
+                font-size: 2.2rem;
+            }
+
+            .graphics-subtitle {
+                margin: 0 auto 20px;
+            }
+
+            .feature-list {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-item {
+                justify-content: center;
+            }
+
+            .form-section {
+                padding: 40px 30px;
+            }
+
+            .form-title {
+                font-size: 1.7rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .graphics-section,
+            .form-section {
+                padding: 40px 25px;
+            }
+
+            .graphics-title {
+                font-size: 1.9rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 1rem;
+            }
+
+            .oauth-btn {
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+
+            .brand-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .brand-icon i {
+                font-size: 40px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h3 class="mb-4 text-center">Create Account</h3>
-        
-        <form method="POST" action="/submit_signup">
-            
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+    <div class="signup-container">
+        <div class="row g-0">
+            <!-- Left Side - Graphics Section -->
+            <div class="col-lg-6">
+                <div class="graphics-section">
+                    <div class="decoration-circle circle-1"></div>
+                    <div class="decoration-circle circle-2"></div>
+                    <div class="decoration-circle circle-3"></div>
+                    
+                    <div class="graphics-content">
+                        <div class="brand-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h1 class="graphics-title">Create your Account</h1>
+                        <p class="graphics-subtitle">
+                            Share your artwork and get projects! Join Mediminders today and never miss your medication schedule.
+                        </p>
+                        
+                        <a href="/#about" class="learn-more-btn">Learn More</a>
+                        
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span>Smart medication reminders</span>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span>Track your health progress</span>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span>Secure and private</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+
+            <!-- Right Side - Sign Up Form -->
+            <div class="col-lg-6">
+                <div class="form-section">
+                    <h2 class="form-title">Sign Up</h2>
+
+                    <form method="POST" action="/submit_signup">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="First name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="lastname" name="lastname"
+                                placeholder="Last name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required>
+                                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                            </div>
+                        </div>
+
+                        <div class="terms-check">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Sign Up
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="or-divider">
+                        <span>or</span>
+                    </div>
+
+                    <div class="oauth-buttons">
+                        <button class="oauth-btn" type="button">
+                            <i class="fab fa-google"></i>
+                            Sign up with Google
+                        </button>
+                        <button class="oauth-btn" type="button">
+                            <i class="fab fa-apple"></i>
+                            Sign up with Apple
+                        </button>
+                    </div>
+
+                    <div class="signin-link">
+                        Already have an account? <a href="/signin">Sign In</a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-success w-100">Sign Up</button>
-            
-            <p class="mt-3 text-center">
-                Already have an account? <a href="/signin">Sign In</a>
-            </p>
-        </form>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Password toggle functionality
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle eye icon
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
+
 </html>

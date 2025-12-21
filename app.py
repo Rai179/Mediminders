@@ -53,7 +53,10 @@ def write_review():
 @app.route("/submit_review", methods=["POST"])
 def submit_review():
     name = request.form.get("name")
+    email = request.form.get("email")  # Email field (optional - we don't save it)
     comment = request.form.get("comment")
+    rating = request.form.get("rating")  # Star rating (optional - we don't save it)
+    
     new_review = Review(name=name, comment=comment)
     db.session.add(new_review)
     db.session.commit()
@@ -65,13 +68,19 @@ def contact_us():
 
 @app.route("/submit_contact", methods=["POST"])
 def submit_contact():
-    name = request.form.get("name")
+    # Get both first and last name
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    name = f"{first_name} {last_name}"  # Combine them
+    
     email = request.form.get("email")
     message = request.form.get("message")
+    
     new_contact = Contact(name=name, email=email, message=message)
     db.session.add(new_contact)
     db.session.commit()
     return redirect(url_for('home'))
+# Sign Up Page
 
 @app.route("/signup")
 def signup():
@@ -79,10 +88,14 @@ def signup():
 
 @app.route("/submit_signup", methods=["POST"])
 def submit_signup():
-    username = request.form.get("username")
+    username = request.form.get("username")  # First name
+    lastname = request.form.get("lastname")   # Last name
+    full_name = f"{username} {lastname}"      # Combine them
     email = request.form.get("email")
     password = request.form.get("password")
-    new_user = User(username=username, email=email, password=password)
+    
+    # Store full name as username or create a separate field
+    new_user = User(username=full_name, email=email, password=password)
     db.session.add(new_user)
     db.session.commit()
     return redirect(url_for('signin'))
@@ -90,7 +103,17 @@ def submit_signup():
 @app.route("/signin")
 def signin():
     return render_template("signin.html")
+@app.route("/auth/google")
+def google_auth():
+    # Implement Google OAuth here
+    # You'll need to set up Google OAuth credentials
+    pass
 
+@app.route("/auth/facebook")
+def facebook_auth():
+    # Implement Facebook OAuth here
+    # You'll need to set up Facebook OAuth credentials
+    pass
 @app.route("/submit_signin", methods=["POST"])
 def submit_signin():
     email = request.form.get("email")
@@ -118,5 +141,6 @@ def logout():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
     # Simplified run command for local use
     app.run(debug=True)
